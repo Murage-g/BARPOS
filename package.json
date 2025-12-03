@@ -1,4 +1,10 @@
 {
+  "scripts" : {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
     "lucide-react": "^0.552.0",
     "react-icons": "^5.5.0"
