@@ -5,3 +5,4 @@ flask_jwt_extended
 flask_cors
 psycopg2-binary
 python-dotenv
+gunicorn==21.2.0
