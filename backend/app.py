@@ -1,20 +1,20 @@
 from flask import Flask
-from backend.extensions import db, bcrypt, jwt, cors
-from backend.config import Config
+from extensions import db, bcrypt, jwt, cors
+from config import Config
 
 # Import blueprints
-from backend.routes.auth_routes import auth_bp
-from backend.routes.role_routes import role_bp
-from backend.routes.admin import admin_bp
-from backend.routes.dashboard import dashboard_bp
-from backend.routes.product_routes import products_bp
-from backend.routes.sales_routes import sales_bp
-from backend.routes.purchases import purchases_bp
-from backend.routes.utils import utils_bp
-from backend.routes.conversion import conversion_bp
-from backend.routes.reconciliation import recon_bp
-from backend.routes.expenses import expenses_bp
-from backend.routes.reports_bp import reports_bp
+from routes.auth_routes import auth_bp
+from routes.role_routes import role_bp
+from routes.admin import admin_bp
+from routes.dashboard import dashboard_bp
+from routes.product_routes import products_bp
+from routes.sales_routes import sales_bp
+from routes.purchases import purchases_bp
+from routes.utils import utils_bp
+from routes.conversion import conversion_bp
+from routes.reconciliation import recon_bp
+from routes.expenses import expenses_bp
+from routes.reports_bp import reports_bp
 
 from flask_cors import CORS
 

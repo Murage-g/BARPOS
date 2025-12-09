@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from backend.models import Product, Sale, Debtor, DebtTransaction, DailyClose
+from models import Product, Sale, Debtor, DebtTransaction, DailyClose
 from ..extensions import db
 
 sales_bp = Blueprint('sales', __name__)

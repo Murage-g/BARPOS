@@ -1,12 +1,12 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required
 from datetime import datetime, date
-from backend.models import Sale, Expense, Product, Purchase
-from backend.utils.decorators import role_required
+from models import Sale, Expense, Product, Purchase
+from utils.decorators import role_required
 from ..extensions import db
 from sqlalchemy import func
-from backend.models.cashmovements import CashMovement
-from backend.models.more import FixedAsset, AccountsReceivable
+from models.cashmovements import CashMovement
+from models.more import FixedAsset, AccountsReceivable
 
 reports_bp = Blueprint("reports_bp", __name__, url_prefix="/api/reports")
 
@@ -111,7 +111,7 @@ def cash_flow_statement():
     )
 
     # Cash received from debtors
-    from backend.models import debtors as CustomerPayment
+    from models import debtors as CustomerPayment
     debtor_payments = (
         CustomerPayment.query.filter(
             db.func.date(CustomerPayment.date) >= start_date,
@@ -136,7 +136,7 @@ def cash_flow_statement():
     )
 
     # Stock purchases paid immediately
-    from backend.models import purchases as StockAddition
+    from models import purchases as StockAddition
     stock_purchases = (
         StockAddition.query.filter(
             db.func.date(StockAddition.purchase_date) >= start_date,
@@ -148,7 +148,7 @@ def cash_flow_statement():
     ) if "StockAddition" in globals() else 0
 
     # Payments to suppliers
-    from backend.models import purchases as SupplierPayment
+    from models import purchases as SupplierPayment
     supplier_payments = (
         SupplierPayment.query.filter(
             db.func.date(SupplierPayment.purchase_date) >= start_date,

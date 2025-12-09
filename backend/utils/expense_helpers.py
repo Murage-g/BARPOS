@@ -1,8 +1,8 @@
 # backend/utils/expense_helpers.py
 
-from backend.models.reconciliation import Expense
-from backend.models.cashmovements import CashMovement
-from backend.extensions import db
+from models.reconciliation import Expense
+from models.cashmovements import CashMovement
+from extensions import db
 
 def record_expense(date, amount, description, category, user_id):
     """

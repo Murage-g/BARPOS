@@ -2,9 +2,9 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_cors import cross_origin
-from backend.utils.decorators import role_required
-from backend.models.reconciliation import Expense
-from backend.extensions import db
+from utils.decorators import role_required
+from models.reconciliation import Expense
+from extensions import db
 from datetime import datetime
 
 expenses_bp = Blueprint("expenses_bp", __name__, url_prefix="/api")
@@ -26,7 +26,7 @@ def list_expenses():
     expenses = q.all()
     return jsonify([e.to_dict() for e in expenses]), 200
 
-from backend.utils.expense_helpers import record_expense
+from utils.expense_helpers import record_expense
 
 @expenses_bp.route("/expenses", methods=["POST"])
 @jwt_required()
