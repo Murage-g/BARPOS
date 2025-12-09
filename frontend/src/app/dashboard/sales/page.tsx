@@ -79,9 +79,9 @@ export default function SalesPage() {
     setProducts((prev) =>
       prev.map((p) =>
         p.name === update.bottle_name
-          ? { .p, stock: update.bottle_stock }
+          ? { ...p, stock: update.bottle_stock }
           : p.name === update.tot_name
-          ? { .p, stock: update.tot_stock }
+          ? { ...p, stock: update.tot_stock }
           : p
       )
     );

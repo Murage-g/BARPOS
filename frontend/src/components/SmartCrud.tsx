@@ -65,7 +65,7 @@ export default function SmartCRUD({ title, endpoint, fields }) {
                 placeholder={f.label}
                 value={form[f.name] || ""}
                 onChange={(e) =>
-                  setForm({ .form, [f.name]: e.target.value })
+                  setForm({ ...form, [f.name]: e.target.value })
                 }
               />
             ))}

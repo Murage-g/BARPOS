@@ -13,10 +13,10 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ .formData, [e.target.name]: e.target.value });
+    setFormData({ .....formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React...formEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");

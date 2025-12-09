@@ -64,7 +64,7 @@ export default function ManageUsers() {
         setUsername("");
         setPassword("");
         setRole("cashier");
-        setUsers((prev) => [.prev, { .data.user, username, role }]);
+        setUsers((prev) => [...prev, { .data.user, username, role }]);
       } else {
         setMessage(`❌ ${data.msg || "Failed to create user"}`);
       }

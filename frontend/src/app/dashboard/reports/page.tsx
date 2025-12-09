@@ -155,7 +155,7 @@ export default function ReportsPage() {
                 className="border rounded-lg p-2"
                 value={customRange.start}
                 onChange={(e) =>
-                  setCustomRange((prev) => ({ .prev, start: e.target.value }))
+                  setCustomRange((prev) => ({ ...prev, start: e.target.value }))
                 }
               />
               <input
@@ -163,7 +163,7 @@ export default function ReportsPage() {
                 className="border rounded-lg p-2"
                 value={customRange.end}
                 onChange={(e) =>
-                  setCustomRange((prev) => ({ .prev, end: e.target.value }))
+                  setCustomRange((prev) => ({ ...prev, end: e.target.value }))
                 }
               />
               <button

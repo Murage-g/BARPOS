@@ -88,7 +88,7 @@ export default function PurchasesPage() {
     setTotalSpent(res.data.total_spent || 0);
   };
 
-  const handlePurchaseSubmit = async (e: React.FormEvent) => {
+  const handlePurchaseSubmit = async (e: React...formEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -126,7 +126,7 @@ export default function PurchasesPage() {
   useEffect(() => {
     if (form.product_id) {
       const selected = products.find((p) => p.id === Number(form.product_id));
-      if (selected) setForm((f) => ({ .f, unit_cost: selected.unit_price.toString() }));
+      if (selected) setForm((f) => ({ ...f, unit_cost: selected.unit_price.toString() }));
     }
   }, [form.product_id, products]);
 
@@ -163,7 +163,7 @@ export default function PurchasesPage() {
             <select
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-indigo-400 outline-none"
               value={form.product_id}
-              onChange={(e) => setForm({ .form, product_id: e.target.value })}
+              onChange={(e) => setForm({ ...form, product_id: e.target.value })}
               required
             >
               <option value="">Select Product</option>
@@ -177,7 +177,7 @@ export default function PurchasesPage() {
             <select
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-indigo-400 outline-none"
               value={form.supplier_id}
-              onChange={(e) => setForm({ .form, supplier_id: e.target.value })}
+              onChange={(e) => setForm({ ...form, supplier_id: e.target.value })}
               required
             >
               <option value="">Select Supplier</option>
@@ -193,7 +193,7 @@ export default function PurchasesPage() {
               placeholder="Quantity"
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-indigo-400 outline-none"
               value={form.quantity}
-              onChange={(e) => setForm({ .form, quantity: e.target.value })}
+              onChange={(e) => setForm({ ...form, quantity: e.target.value })}
               required
             />
 
@@ -204,7 +204,7 @@ export default function PurchasesPage() {
                 placeholder="Unit Cost"
                 className="flex-1 border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-indigo-400 outline-none"
                 value={form.unit_cost}
-                onChange={(e) => setForm({ .form, unit_cost: e.target.value })}
+                onChange={(e) => setForm({ ...form, unit_cost: e.target.value })}
                 required
               />
               <button
@@ -216,7 +216,7 @@ export default function PurchasesPage() {
                   );
                   if (selected)
                     setForm((f) => ({
-                      .f,
+                      ...f,
                       unit_cost: selected.unit_price.toString(),
                     }));
                 }}

@@ -27,10 +27,10 @@ export default function RegisterPage() {
   }, [user, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ .formData, [e.target.name]: e.target.value });
+    setFormData({ .....formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React...formEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
