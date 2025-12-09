@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify, request
 from models import Product
 from models.ConversionHistory import ConversionHistory
-from ..extensions import db
+from extensions import db
 from flask_jwt_extended import jwt_required
 
 conversion_bp = Blueprint("conversion", __name__)

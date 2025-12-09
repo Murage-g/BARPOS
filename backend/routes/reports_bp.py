@@ -3,7 +3,7 @@ from flask_jwt_extended import jwt_required
 from datetime import datetime, date
 from models import Sale, Expense, Product, Purchase
 from utils.decorators import role_required
-from ..extensions import db
+from extensions import db
 from sqlalchemy import func
 from models.cashmovements import CashMovement
 from models.more import FixedAsset, AccountsReceivable

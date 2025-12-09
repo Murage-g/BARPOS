@@ -2,8 +2,8 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import Navbar from "../components/Navbar";
-import { AuthProvider } from "../context/AuthContext";
+import Navbar from "/components/Navbar";
+import { AuthProvider } from "/context/AuthContext";
 import "./globals.css";
 
 export default function RootLayout({

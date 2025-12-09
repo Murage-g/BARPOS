@@ -126,14 +126,14 @@ export default function PurchasesPage() {
   useEffect(() => {
     if (form.product_id) {
       const selected = products.find((p) => p.id === Number(form.product_id));
-      if (selected) setForm((f) => ({ ...f, unit_cost: selected.unit_price.toString() }));
+      if (selected) setForm((f) => ({ .f, unit_cost: selected.unit_price.toString() }));
     }
   }, [form.product_id, products]);
 
   if (!authenticated)
     return (
       <p className="text-center mt-10 text-gray-500 text-lg animate-pulse font-medium">
-        Checking authentication...
+        Checking authentication.
       </p>
     );
 
@@ -163,7 +163,7 @@ export default function PurchasesPage() {
             <select
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-indigo-400 outline-none"
               value={form.product_id}
-              onChange={(e) => setForm({ ...form, product_id: e.target.value })}
+              onChange={(e) => setForm({ .form, product_id: e.target.value })}
               required
             >
               <option value="">Select Product</option>
@@ -177,7 +177,7 @@ export default function PurchasesPage() {
             <select
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-indigo-400 outline-none"
               value={form.supplier_id}
-              onChange={(e) => setForm({ ...form, supplier_id: e.target.value })}
+              onChange={(e) => setForm({ .form, supplier_id: e.target.value })}
               required
             >
               <option value="">Select Supplier</option>
@@ -193,7 +193,7 @@ export default function PurchasesPage() {
               placeholder="Quantity"
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-indigo-400 outline-none"
               value={form.quantity}
-              onChange={(e) => setForm({ ...form, quantity: e.target.value })}
+              onChange={(e) => setForm({ .form, quantity: e.target.value })}
               required
             />
 
@@ -204,7 +204,7 @@ export default function PurchasesPage() {
                 placeholder="Unit Cost"
                 className="flex-1 border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-indigo-400 outline-none"
                 value={form.unit_cost}
-                onChange={(e) => setForm({ ...form, unit_cost: e.target.value })}
+                onChange={(e) => setForm({ .form, unit_cost: e.target.value })}
                 required
               />
               <button
@@ -216,7 +216,7 @@ export default function PurchasesPage() {
                   );
                   if (selected)
                     setForm((f) => ({
-                      ...f,
+                      .f,
                       unit_cost: selected.unit_price.toString(),
                     }));
                 }}
@@ -230,7 +230,7 @@ export default function PurchasesPage() {
               disabled={loading}
               className="w-full bg-indigo-600 text-white py-3 rounded-2xl text-sm font-semibold hover:bg-indigo-700 transition shadow-sm"
             >
-              {loading ? "Recording..." : "➕ Add Purchase"}
+              {loading ? "Recording." : "➕ Add Purchase"}
             </button>
           </form>
         </div>
@@ -243,7 +243,7 @@ export default function PurchasesPage() {
               type="text"
               placeholder="Supplier Name"
               value={newSupplier.name}
-              onChange={(e) => setNewSupplier({ ...newSupplier, name: e.target.value })}
+              onChange={(e) => setNewSupplier({ .newSupplier, name: e.target.value })}
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-green-400 outline-none"
             />
             <input
@@ -251,7 +251,7 @@ export default function PurchasesPage() {
               placeholder="Contact Person"
               value={newSupplier.contact_person}
               onChange={(e) =>
-                setNewSupplier({ ...newSupplier, contact_person: e.target.value })
+                setNewSupplier({ .newSupplier, contact_person: e.target.value })
               }
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-green-400 outline-none"
             />
@@ -260,7 +260,7 @@ export default function PurchasesPage() {
               placeholder="Phone"
               value={newSupplier.phone}
               onChange={(e) =>
-                setNewSupplier({ ...newSupplier, phone: e.target.value })
+                setNewSupplier({ .newSupplier, phone: e.target.value })
               }
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-green-400 outline-none"
             />
@@ -269,7 +269,7 @@ export default function PurchasesPage() {
               placeholder="Email"
               value={newSupplier.email}
               onChange={(e) =>
-                setNewSupplier({ ...newSupplier, email: e.target.value })
+                setNewSupplier({ .newSupplier, email: e.target.value })
               }
               className="w-full border border-gray-200 rounded-2xl p-3 text-sm focus:ring-2 focus:ring-green-400 outline-none"
             />

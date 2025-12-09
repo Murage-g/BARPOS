@@ -64,7 +64,7 @@ export default function ManageUsers() {
         setUsername("");
         setPassword("");
         setRole("cashier");
-        setUsers((prev) => [...prev, { ...data.user, username, role }]);
+        setUsers((prev) => [.prev, { .data.user, username, role }]);
       } else {
         setMessage(`❌ ${data.msg || "Failed to create user"}`);
       }
@@ -106,7 +106,7 @@ export default function ManageUsers() {
     const data = await res.json();
     if (res.ok) {
       setUsers((prev) =>
-        prev.map((u) => (u.id === id ? { ...u, role: newRole } : u))
+        prev.map((u) => (u.id === id ? { .u, role: newRole } : u))
       );
       setMessage(`🔄 ${data.msg}`);
     } else {
@@ -171,7 +171,7 @@ export default function ManageUsers() {
           </h2>
 
           {loading ? (
-            <p className="text-center text-gray-500 text-sm">Loading users...</p>
+            <p className="text-center text-gray-500 text-sm">Loading users.</p>
           ) : users.length === 0 ? (
             <p className="text-center text-gray-500 text-sm">
               No users found.

@@ -27,7 +27,7 @@ export default function RegisterPage() {
   }, [user, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ .formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -124,7 +124,7 @@ export default function RegisterPage() {
               disabled={loading}
               className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition"
             >
-              {loading ? "Registering..." : "Register"}
+              {loading ? "Registering." : "Register"}
             </button>
           </form>
         </div>

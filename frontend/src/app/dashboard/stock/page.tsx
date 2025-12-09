@@ -72,7 +72,7 @@ export default function ProductsPage() {
 
   const toggleSort = () => {
     setSortAsc(!sortAsc);
-    const sorted = [...products].sort((a, b) =>
+    const sorted = [.products].sort((a, b) =>
       sortAsc ? b.id - a.id : a.id - b.id
     );
     setProducts(sorted);
@@ -100,7 +100,7 @@ export default function ProductsPage() {
             className="border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 rounded-lg px-3 py-2 text-sm placeholder-gray-400"
             placeholder="Product Name"
             value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            onChange={(e) => setForm({ .form, name: e.target.value })}
             required
           />
           <input
@@ -108,7 +108,7 @@ export default function ProductsPage() {
             placeholder="Stock Quantity"
             type="number"
             value={form.stock}
-            onChange={(e) => setForm({ ...form, stock: e.target.value })}
+            onChange={(e) => setForm({ .form, stock: e.target.value })}
             required
           />
           <input
@@ -117,7 +117,7 @@ export default function ProductsPage() {
             type="number"
             step="0.01"
             value={form.unit_price}
-            onChange={(e) => setForm({ ...form, unit_price: e.target.value })}
+            onChange={(e) => setForm({ .form, unit_price: e.target.value })}
             required
           />
           <input
@@ -126,7 +126,7 @@ export default function ProductsPage() {
             type="number"
             step="0.01"
             value={form.cost_price}
-            onChange={(e) => setForm({ ...form, cost_price: e.target.value })}
+            onChange={(e) => setForm({ .form, cost_price: e.target.value })}
             required
           />
           <button
@@ -142,7 +142,7 @@ export default function ProductsPage() {
           {loading ? (
             <div className="flex justify-center items-center py-10">
               <Loader2 className="animate-spin w-6 h-6 text-indigo-600" />
-              <span className="ml-2 text-gray-500">Loading products...</span>
+              <span className="ml-2 text-gray-500">Loading products.</span>
             </div>
           ) : products.length === 0 ? (
             <p className="text-center text-gray-500 py-6">

@@ -21,7 +21,7 @@ export default function ConversionSection({ onStockUpdate }: { onStockUpdate: (u
   const performConversion = async () => {
     if (!selectedProduct) return;
     setIsConverting(true);
-    setMessage({ text: "Processing...", type: "info" });
+    setMessage({ text: "Processing.", type: "info" });
 
     try {
       const response = await fetch("http://127.0.0.1:5000/api/convert", {
@@ -106,7 +106,7 @@ export default function ConversionSection({ onStockUpdate }: { onStockUpdate: (u
         onChange={(e) => setSelectedProduct(e.target.value)}
         disabled={isConverting}
       >
-        <option value="">Select a TOT product...</option>
+        <option value="">Select a TOT product.</option>
         {totProducts.map((name) => (
           <option key={name} value={name}>
             {name}
@@ -120,7 +120,7 @@ export default function ConversionSection({ onStockUpdate }: { onStockUpdate: (u
         className="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition disabled:opacity-50 text-sm sm:text-base"
         
       >
-        {isConverting ? "Processing..." : "Convert Bottle"}
+        {isConverting ? "Processing." : "Convert Bottle"}
       </button>
 
       {message.text && <div className={messageStyle}>{message.text}</div>}

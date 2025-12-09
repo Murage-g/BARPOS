@@ -85,19 +85,19 @@ export default function ExpensesPage() {
               <input
                 type="date"
                 value={form.date}
-                onChange={(e) => setForm({ ...form, date: e.target.value })}
+                onChange={(e) => setForm({ .form, date: e.target.value })}
                 className="w-full border rounded-xl p-3 text-sm"
               />
               <input
                 placeholder="Category (eg. Utilities)"
                 value={form.category}
-                onChange={(e) => setForm({ ...form, category: e.target.value })}
+                onChange={(e) => setForm({ .form, category: e.target.value })}
                 className="w-full border rounded-xl p-3 text-sm"
               />
               <input
                 placeholder="Description"
                 value={form.description}
-                onChange={(e) => setForm({ ...form, description: e.target.value })}
+                onChange={(e) => setForm({ .form, description: e.target.value })}
                 className="w-full border rounded-xl p-3 text-sm"
               />
               <input
@@ -105,7 +105,7 @@ export default function ExpensesPage() {
                 step="0.01"
                 placeholder="Amount"
                 value={form.amount}
-                onChange={(e) => setForm({ ...form, amount: e.target.value })}
+                onChange={(e) => setForm({ .form, amount: e.target.value })}
                 required
                 className="w-full border rounded-xl p-3 text-sm"
               />
@@ -131,7 +131,7 @@ export default function ExpensesPage() {
             </div>
 
             {loading ? (
-              <p className="text-center text-gray-500 py-6">Loading...</p>
+              <p className="text-center text-gray-500 py-6">Loading.</p>
             ) : expenses.length === 0 ? (
               <p className="text-center text-gray-500 py-6">No expenses yet</p>
             ) : (

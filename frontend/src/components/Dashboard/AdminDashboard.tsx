@@ -26,7 +26,7 @@ export default function AdminDashboard() {
   }, []);
 
   if (loading)
-    return <p className="p-6 text-center text-gray-500 animate-pulse">Loading dashboard...</p>;
+    return <p className="p-6 text-center text-gray-500 animate-pulse">Loading dashboard.</p>;
 
   if (!dashboardData)
     return <p className="p-6 text-center text-gray-500">No data available.</p>;
@@ -34,7 +34,7 @@ export default function AdminDashboard() {
   const topDebtors = dashboardData?.top_debtors || [];
   const lowStockProducts = dashboardData?.low_stock || [];
 
-  const sortedProducts = [...lowStockProducts].sort((a, b) =>
+  const sortedProducts = [.lowStockProducts].sort((a, b) =>
     sortAsc ? a.id - b.id : b.id - a.id
   );
 

@@ -79,9 +79,9 @@ export default function SalesPage() {
     setProducts((prev) =>
       prev.map((p) =>
         p.name === update.bottle_name
-          ? { ...p, stock: update.bottle_stock }
+          ? { .p, stock: update.bottle_stock }
           : p.name === update.tot_name
-          ? { ...p, stock: update.tot_stock }
+          ? { .p, stock: update.tot_stock }
           : p
       )
     );
@@ -110,7 +110,7 @@ export default function SalesPage() {
           {loading ? (
             <div className="flex justify-center items-center py-10">
               <Loader2 className="animate-spin w-6 h-6 text-indigo-600" />
-              <span className="ml-2 text-gray-500">Loading products...</span>
+              <span className="ml-2 text-gray-500">Loading products.</span>
             </div>
           ) : products.length === 0 ? (
             <p className="text-center text-gray-500 py-6">
@@ -163,7 +163,7 @@ export default function SalesPage() {
                             }
 
                             setClosing({
-                              ...closing,
+                              .closing,
                               [p.id]: value,
                             });
                           }}
@@ -202,7 +202,7 @@ export default function SalesPage() {
           {processing ? (
             <>
               <Loader2 className="animate-spin w-5 h-5 mr-2" />
-              Processing...
+              Processing.
             </>
           ) : (
             <>

@@ -34,10 +34,10 @@ export default function ReconciliationPage() {
   }
 
   function addLine() {
-    setLines((s) => [...s, { kind: "other", description: "", amount: "0" }]);
+    setLines((s) => [.s, { kind: "other", description: "", amount: "0" }]);
   }
   function updateLine(idx: number, patch: Partial<Line>) {
-    setLines((s) => s.map((l, i) => (i === idx ? { ...l, ...patch } : l)));
+    setLines((s) => s.map((l, i) => (i === idx ? { .l, .patch } : l)));
   }
   function removeLine(idx: number) {
     setLines((s) => s.filter((_, i) => i !== idx));
@@ -141,7 +141,7 @@ export default function ReconciliationPage() {
                   <div className="text-lg font-bold">{difference >= 0 ? <span className="text-green-700">Surplus KSh {difference.toFixed(2)}</span> : <span className="text-red-600">Shortfall KSh {Math.abs(difference).toFixed(2)}</span>}</div>
                 </div>
                 <button onClick={submitReconc} disabled={saving} className="bg-indigo-600 text-white px-4 py-2 rounded">
-                  {saving ? "Saving..." : "Save Reconciliation"}
+                  {saving ? "Saving." : "Save Reconciliation"}
                 </button>
               </div>
             </div>
