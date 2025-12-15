@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import { FiTrendingUp, FiPieChart, FiDollarSign } from "react-icons/fi";
+import { TrendingUp, PieChart, DollarSign } from "lucide-react";
 
 // ✅ Define interface only once
 interface Report {
@@ -124,9 +124,9 @@ export default function ReportsPage() {
   }, [filterType, customRange]);
 
   const icons: Record<string, JSX.Element> = {
-    "Profit and Loss": <FiTrendingUp className="text-3xl text-green-500" />,
-    "Balance Sheet": <FiPieChart className="text-3xl text-blue-500" />,
-    "Cash Flow Statement": <FiDollarSign className="text-3xl text-yellow-500" />,
+    "Profit and Loss": <TrendingUp className="text-3xl text-green-500" />,
+    "Balance Sheet": <PieChart className="text-3xl text-blue-500" />,
+    "Cash Flow Statement": <DollarSign className="text-3xl text-yellow-500" />,
   };
 
   return (
@@ -192,7 +192,7 @@ export default function ReportsPage() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   {icons[r.report_type] ||
-                    <FiPieChart className="text-3xl text-gray-400" />}
+                    <PieChart className="text-3xl text-gray-400" />}
                   <h2 className="text-xl font-semibold text-blue-700">
                     {r.report_type}
                   </h2>

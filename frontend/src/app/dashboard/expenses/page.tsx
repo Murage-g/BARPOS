@@ -36,7 +36,7 @@ export default function ExpensesPage() {
     }
   }
 
-  async function submitExpense(e: React...formEvent) {
+  async function submitExpense(e: React.formEvent) {
     e.preventDefault();
     try {
       const body = {

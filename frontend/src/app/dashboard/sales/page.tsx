@@ -163,7 +163,7 @@ export default function SalesPage() {
                             }
 
                             setClosing({
-                              .closing,
+                              ...closing,
                               [p.id]: value,
                             });
                           }}

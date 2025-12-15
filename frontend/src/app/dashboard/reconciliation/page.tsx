@@ -37,7 +37,7 @@ export default function ReconciliationPage() {
     setLines((s) => [...s, { kind: "other", description: "", amount: "0" }]);
   }
   function updateLine(idx: number, patch: Partial<Line>) {
-    setLines((s) => s.map((l, i) => (i === idx ? { ...l, .patch } : l)));
+    setLines((s) => s.map((l, i) => (i === idx ? { ...l, ...patch } : l)));
   }
   function removeLine(idx: number) {
     setLines((s) => s.filter((_, i) => i !== idx));

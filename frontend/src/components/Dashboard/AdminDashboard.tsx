@@ -34,7 +34,7 @@ export default function AdminDashboard() {
   const topDebtors = dashboardData?.top_debtors || [];
   const lowStockProducts = dashboardData?.low_stock || [];
 
-  const sortedProducts = [.lowStockProducts].sort((a, b) =>
+  const sortedProducts = [...lowStockProducts].sort((a, b) =>
     sortAsc ? a.id - b.id : b.id - a.id
   );
 

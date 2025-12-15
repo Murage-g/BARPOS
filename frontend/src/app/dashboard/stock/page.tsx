@@ -40,7 +40,7 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
 
-  const addProduct = async (e: React...formEvent) => {
+  const addProduct = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const res = await api.post("/products", {
@@ -72,7 +72,7 @@ export default function ProductsPage() {
 
   const toggleSort = () => {
     setSortAsc(!sortAsc);
-    const sorted = [.products].sort((a, b) =>
+    const sorted = [...products].sort((a, b) =>
       sortAsc ? b.id - a.id : a.id - b.id
     );
     setProducts(sorted);
