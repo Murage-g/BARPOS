@@ -56,6 +56,11 @@ def create_app():
     app.register_blueprint(recon_bp)
     app.register_blueprint(expenses_bp)
     app.register_blueprint(reports_bp)
+    
+    @app.route("/")
+    def health():
+        return {"status": "ok"}, 200
+
 
     return app
 
