@@ -5,7 +5,7 @@ import SmartCRUD from "@/components/SmartCrud";
 
 export default function AccountingAdminPage() {
   return (
-    <ProtectedRoute roles={["admin"]}>
+    <ProtectedRoute allowedRoles={["admin"]}>
       <div className="p-4 space-y-6 max-w-3xl mx-auto">
 
         {/* Fixed Assets */}
