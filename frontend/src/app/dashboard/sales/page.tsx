@@ -62,7 +62,7 @@ export default function SalesPage() {
     try {
       const items = Object.entries(closing).map(([id, val]) => ({
         product_id: parseInt(id),
-        closing_stock: parseInt(val),
+        closing_stock: val,
       }));
       const res = await api.post("/daily_close", { items });
       alert(res.data.message);
