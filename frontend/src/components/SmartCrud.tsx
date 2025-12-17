@@ -1,116 +1,166 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import api from "@/lib/api";
 
-export default function SmartCRUD({ title, endpoint, fields }) {
-  const [items, setItems] = useState([]);
-  const [open, setOpen] = useState(false);
-  const [form, setForm] = useState({});
-  const [editingId, setEditingId] = useState(null);
+// 🔹 Type definitions
+interface Field {
+  name: string;
+  label: string;
+}
 
-  const fetchData = async () => {
-    const res = await axios.get(endpoint);
-    setItems(res.data);
+interface SmartCRUDProps {
+  title: string;
+  endpoint: string;
+  fields: Field[];
+}
+
+interface Item {
+  [key: string]: any; // Each field can have any value type (string, number, etc.)
+}
+
+export default function SmartCRUD({ title, endpoint, fields }: SmartCRUDProps) {
+  const [items, setItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [form, setForm] = useState<Item>({});
+  const [editingId, setEditingId] = useState<number | null>(null);
+
+  // Fetch data from API
+  const fetchItems = async () => {
+    setLoading(true);
+    try {
+      const res = await api.get(endpoint);
+      setItems(res.data);
+    } catch (err) {
+      console.error("Failed to fetch items:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchItems();
+  }, [endpoint]);
 
+  // Handle form input changes
+  const handleChange = (field: string, value: any) => {
+    setForm({ ...form, [field]: value });
+  };
+
+  // Handle add/update
   const handleSubmit = async () => {
-    if (editingId) {
-      await axios.put(`${endpoint}/${editingId}`, form);
-    } else {
-      await axios.post(endpoint, form);
+    try {
+      if (editingId !== null) {
+        // Update
+        await api.put(`${endpoint}/${editingId}`, form);
+      } else {
+        // Create
+        await api.post(endpoint, form);
+      }
+      setForm({});
+      setEditingId(null);
+      fetchItems();
+    } catch (err) {
+      console.error("Failed to save item:", err);
     }
-
-    setOpen(false);
-    setForm({});
-    setEditingId(null);
-    fetchData();
   };
 
-  const handleEdit = (item) => {
+  // Handle edit
+  const handleEdit = (item: Item, id: number) => {
     setForm(item);
-    setEditingId(item.id);
-    setOpen(true);
+    setEditingId(id);
   };
 
-  const handleDelete = async (id) => {
-    await axios.delete(`${endpoint}/${id}`);
-    fetchData();
+  // Handle delete
+  const handleDelete = async (id: number) => {
+    if (!confirm("Are you sure you want to delete this item?")) return;
+    try {
+      await api.delete(`${endpoint}/${id}`);
+      fetchItems();
+    } catch (err) {
+      console.error("Failed to delete item:", err);
+    }
   };
 
   return (
-    <div className="p-4 space-y-4">
-
-      {/* Title + Add Button */}
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">{title}</h2>
-
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button>Add</Button>
-          </SheetTrigger>
-
-          <SheetContent side="bottom" className="p-4 space-y-3">
-            {fields.map((f) => (
-              <Input
-                key={f.name}
-                placeholder={f.label}
-                value={form[f.name] || ""}
-                onChange={(e) =>
-                  setForm({ ...form, [f.name]: e.target.value })
-                }
+    <Card className="mb-6">
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {/* Form */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          {fields.map((f) => (
+            <div key={f.name} className="flex flex-col">
+              <label className="text-sm font-medium mb-1">{f.label}</label>
+              <input
+                type="text"
+                value={form[f.name] ?? ""}
+                onChange={(e) => handleChange(f.name, e.target.value)}
+                className="border rounded-md p-2 text-sm"
               />
-            ))}
-
-            <Button className="w-full" onClick={handleSubmit}>
-              Save
-            </Button>
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      {/* Item List */}
-      <div className="space-y-3">
-        {items.map((item) => (
-          <Card
-            key={item.id}
-            className="p-3 flex justify-between items-center"
-          >
-            <CardContent className="p-0">
-              {Object.entries(item).map(([key, value]) => (
-                key !== "id" && (
-                  <p key={key} className="text-sm">
-                    <strong>{key.replace(/_/g, " ")}:</strong> {String(value)}
-                  </p>
-                )
-              ))}
-            </CardContent>
-
-            <div className="flex gap-2">
-              <Button size="sm" onClick={() => handleEdit(item)}>
-                Edit
-              </Button>
-
-              <Button
-                size="sm"
-                variant="destructive"
-                onClick={() => handleDelete(item.id)}
-              >
-                Delete
-              </Button>
             </div>
-          </Card>
-        ))}
-      </div>
+          ))}
+        </div>
+        <div className="flex gap-2 mb-4">
+          <button
+            onClick={handleSubmit}
+            className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+          >
+            {editingId !== null ? "Update" : "Add"}
+          </button>
+          {editingId !== null && (
+            <button
+              onClick={() => { setForm({}); setEditingId(null); }}
+              className="bg-gray-400 text-white py-2 px-4 rounded hover:bg-gray-500 transition"
+            >
+              Cancel
+            </button>
+          )}
+        </div>
 
-    </div>
+        {/* Table */}
+        {loading ? (
+          <p className="text-gray-500">Loading...</p>
+        ) : items.length === 0 ? (
+          <p className="text-gray-500">No items found.</p>
+        ) : (
+          <table className="min-w-full text-sm border">
+            <thead className="bg-gray-100">
+              <tr>
+                {fields.map((f) => (
+                  <th key={f.name} className="py-2 px-3 text-left">{f.label}</th>
+                ))}
+                <th className="py-2 px-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items.map((item: Item, index: number) => (
+                <tr key={index} className="border-b hover:bg-gray-50">
+                  {fields.map((f) => (
+                    <td key={f.name} className="py-2 px-3">{item[f.name]}</td>
+                  ))}
+                  <td className="py-2 px-3 flex gap-2">
+                    <button
+                      onClick={() => handleEdit(item, item.id)}
+                      className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </CardContent>
+    </Card>
   );
 }
