@@ -28,7 +28,7 @@ export default function ManageUsers() {
 
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:5000/api/admin/users", {
+        const res = await fetch("https://barpos-production.up.railway.app/api/admin/users", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -50,7 +50,7 @@ export default function ManageUsers() {
     e.preventDefault();
     setMessage("");
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/auth/register", {
+      const res = await fetch("https://barpos-production.up.railway.app/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +78,7 @@ export default function ManageUsers() {
   // -------------------------
   const handleDelete = async (id: number) => {
     if (!confirm("Are you sure you want to delete this user?")) return;
-    const res = await fetch(`http://127.0.0.1:5000/api/admin/users/${id}`, {
+    const res = await fetch(`https://barpos-production.up.railway.app/api/admin/users/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -95,7 +95,7 @@ export default function ManageUsers() {
   // Upgrade/Demote User Role
   // -------------------------
   const handleUpgrade = async (id: number, newRole: string) => {
-    const res = await fetch(`http://127.0.0.1:5000/api/admin/users/${id}/role`, {
+    const res = await fetch(`https://barpos-production.up.railway.app/api/admin/users/${id}/role`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
